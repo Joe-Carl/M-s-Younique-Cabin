@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Payment Method</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="m's logo  copy look - Copy (2).png"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+body{
+font-family:Arial;
+background:#f3f0ff;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.box{
+background:white;
+padding:2rem;
+border-radius:10px;
+width:320px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h2{
+color:#4c1d95;
+margin-bottom:1.5rem;
+}
+
+button{
+width:100%;
+padding:.8rem;
+margin:.7rem 0;
+border:none;
+border-radius:8px;
+background:#4c1d95;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Select Payment Method</h2>
+
+<button onclick="choose('momo')">📱 Pay with Mobile Money</button>
+<button onclick="choose('card')">💳 Pay with Bank Card</button>
+<button onclick="choose('delivery')">📦 Pay on Delivery</button>
+
+</div>
+
+<script>
+function choose(method){
+localStorage.setItem("paymentMethod", method);
+window.location.href="checkout.html";
+}
+</script>
+
+</body>
+</html>

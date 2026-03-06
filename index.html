@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M's Younique Cabin | Unisex Store</title>
+<link rel="icon" type="image/x-icon" href="m's logo  copy look - Copy (2).png"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+body { background: #fdfcfe; color: #333; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+
+/* Header */
+header { background: #4c1d95; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+
+/* Logo + Brand */
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand img { width: 50px; height: 50px; object-fit: contain; border-radius: 50%; background: white; padding: 5px; }
+.brand h1 { font-size: 1.3rem; font-weight: 700; color: rgb(194, 192, 255); }
+
+/* Nav */
+nav { display: flex; align-items: center; }
+nav > ul { display: flex; list-style: none; align-items: center; }
+nav > ul > li { position: relative; margin-left: 1.5rem; }
+nav a { color: white; font-weight: 500; padding: 0.5rem 0; display: inline-block; transition: 0.3s; }
+nav a:hover { color: #facc15; }
+
+/* Login Button */
+.login-btn { background:#facc15; color:#4c1d95; padding:6px 15px; border-radius:999px; font-weight:600; transition:.3s; }
+.login-btn:hover{ background:white; transform:translateY(-3px); }
+
+/* Dropdown */
+.dropdown { display: none; position: absolute; top: 2.5rem; left: 0; background: white; color: #4c1d95; min-width: 230px; border-radius: 0.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.15); z-index: 100; }
+.dropdown li { margin: 0; }
+.dropdown li a { padding: 0.75rem 1rem; display: block; color: #4c1d95; }
+.dropdown li a:hover { background: #e0d5f9; color:#4c1d95; }
+nav li:hover .dropdown { display: block; }
+
+/* Hero Section */
+.hero{
+position:relative;
+background:
+linear-gradient(rgba(76,29,149,0.7), rgba(59,130,246,0.7)),
+url("") center/cover no-repeat;
+color:white;
+text-align:center;
+padding:7rem 2rem;
+overflow:hidden;
+animation:heroFade 1.5s ease;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle, rgba(250,204,21,0.4) 0%, transparent 70%);
+top:-150px;
+right:-150px;
+animation:floatGlow 6s ease-in-out infinite;
+}
+
+.hero h2{
+font-size:2.7rem;
+margin-bottom:1rem;
+animation:slideUp 1s ease;
+}
+
+.hero p{
+font-size:1.2rem;
+margin-bottom:2rem;
+max-width:600px;
+margin-inline:auto;
+animation:slideUp 1.2s ease;
+}
+
+.hero a{
+background:#facc15;
+color:#4c1d95;
+font-weight:600;
+padding:0.9rem 2rem;
+border-radius:999px;
+transition:0.3s;
+animation:slideUp 1.4s ease;
+}
+
+.hero a:hover{
+background:white;
+transform:translateY(-4px);
+box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+
+@keyframes heroFade{
+from{opacity:0; transform:scale(1.05);}
+to{opacity:1; transform:scale(1);}
+}
+
+@keyframes slideUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes floatGlow{
+0%{transform:translateY(0);}
+50%{transform:translateY(20px);}
+100%{transform:translateY(0);}
+}
+
+/* Categories */
+.section-title { text-align: center; margin: 4rem 0 2rem; }
+.section-title h2 { font-size: 2rem; color: #4c1d95; }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; padding: 0 2rem 4rem; }
+
+.card { background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; }
+
+.card img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.4s; }
+
+.card h3 { margin: 1rem 0 0.5rem; font-size: 1.1rem; font-weight: 600; color: #4c1d95; }
+
+.card button { background: #3b82f6; color: white; padding: 0.6rem 1.5rem; border-radius: 999px; margin-bottom: 1rem; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
+
+.card:hover img { transform: scale(1.05); }
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0,0,0,0.25); }
+
+.card:hover button { transform: translateY(-3px); box-shadow: 0 0 15px #3b82f6; }
+
+/* Contact Us Section */
+.contact-section {
+  background: #3838ffd3;
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  animation:fadeInUp 1s ease;
+}
+
+.contact-section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+
+.contact-box {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-box a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 15px;
+  width: 60px;
+  height: 60px;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.contact-box a img { width: 30px; height: 30px; }
+
+.contact-box a:hover {
+  transform: scale(1.2);
+  box-shadow: 0 5px 15px rgba(128, 127, 127, 0.3);
+}
+
+/* Footer */
+footer { background: #1e3a8a; color: white; text-align: center; padding: 3rem 1rem; margin-top: 4rem; }
+
+/* Modal */
+.modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; backdrop-filter:blur(6px); }
+
+.modal-content { background:white; padding:2rem; width:350px; border-radius:1rem; animation:fadeInUp .4s ease; position:relative; }
+
+.modal h2 { color:#4c1d95;text-align:center;margin-bottom:1rem; }
+
+.modal input { width:100%; padding:.7rem; margin:.5rem 0; border-radius:.5rem; border:1px solid #ccc; }
+
+.modal button { width:100%; padding:.7rem; margin-top:0.5rem; border:none; border-radius:999px; background:#4c1d95; color:white; font-weight:600; cursor:pointer; }
+
+.switch { text-align:center;margin-top:1rem;color:#4c1d95;cursor:pointer; }
+
+.close { position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; }
+
+@keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="brand">
+<img src="m's logo .jpeg">
+<h1>M's Younique Cabin</h1>
+</div>
+
+<nav>
+<ul>
+<li>
+<a href="#">Categories <i class="ri-arrow-down-s-line"></i></a>
+<ul class="dropdown">
+<li><a href="ladies.html">Ladies Cabin</a></li>
+<li><a href="men.html">Men's Cabin</a></li>
+<li><a href="kids.html">Kids Cabin</a></li>
+<li><a href="appliances.html">Home & Kitchen Appliances</a></li>
+<li><a href="beauty.html">Beauty Supply & Extensions</a></li>
+<li><a href="frozen.html">M's Frozen Foods & Groceries</a></li>
+<li><a href="perfume.html">Perfume & Scents</a></li>
+<li><a href="shoesandsbags.html">Shoes & Bags </a></li>
+<li><a href="Accessories.html">Accessories</a></li>
+</ul>
+</li>
+<li><a class="login-btn" onclick="openModal()">Login</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+<h2>Unisex Clothing & Lifestyle Store</h2>
+<p>Explore premium apparel, home essentials, beauty kits, groceries, and more—all under one roof.</p>
+<a href="#categories">Shop Now</a>
+</section>
+
+<section id="categories">
+<div class="section-title">
+<h2>Shop By Categories</h2>
+</div>
+
+<div class="product-grid">
+
+<div class="card">
+<img src="Women's Carbin.webp">
+<h3>Ladies Cabin</h3>
+<button onclick="window.location.href='ladies.html'">Explore</button>
+</div>
+
+<div class="card">
+<img src="Men's Carbin.webp">
+<h3>Men's Cabin</h3>
+<button onclick="window.location.href='men.html'">Explore</button>
+</div>
+
+<div class="card">
+<img src="Kids-closet-transparent-shoe-boxes.jpg">
+<h3>Kids Cabin</h3>
+<button onclick="window.location.href='kids.html'">Explore</button>
+</div>
+
+<div class="card">
+<img src="home and kitchen.webp">
+<h3>Home & Kitchen Appliances</h3>
+<button onclick="window.location.href='appliances.html'">Explore</button>
+</div>
+
+<div class="card">
+<img src="beaty.webp">
+<h3>Beauty Kits & Extensions</h3>
+<button onclick="window.location.href='beauty.html'">Explore</button>
+</div>
+
+<div class="card">
+<img src="frozen.webp">
+<h3>M's Frozen Foods & Groceries</h3>
+<button onclick="window.location.href='frozen.html'">Explore</button>
+</div>
+<div class="card">
+<img src="perfume.webp">
+<h3>Perfume & Scents</h3>
+<button onclick="window.location.href='perfume.html'">Explore</button>
+</div>
+<div class="card">
+<img src="Shoes and Bags.webp">
+<h3>Shoes & Bags</h3>
+<button onclick="window.location.href='shoesandsbags.html'">Explore</button>
+</div>
+<div class="card">
+<img src="acceries.webp">
+<h3>Accessories</h3>
+<button onclick="window.location.href='Accessories.html'">Explore</button>
+</div>
+
+</div>
+</section>
+
+<!-- Contact Us Section -->
+<section class="contact-section">
+<h2>Contact Us</h2>
+<div class="contact-box">
+  <a href="https://wa.link/g74wjv" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+  <a href="https://www.tiktok.com/@msyouniquecabin" target="_blank">
+    <img src="tiktok.jpg" alt="TikTok">
+  </a>
+  <a href="https://www.instagram.com/msyouniquecabin" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+  </a>
+  <a href="https://www.snapchat.com/add/naya_reen20" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" alt="Snapchat">
+</a>
+  <a href="https://www.facebook.com/msyouniquecabin" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+  </a>
+  <a href="mailto:msyouniquecabin@gmail.com" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email">
+  </a>
+</div>
+</section>
+
+<footer>
+<p>©️ 2026 M's Younique Cabin. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

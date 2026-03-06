@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Kits & Extensions | M's Younique Cabin</title>
+<link rel="icon" type="image/x-icon" href="m's logo  copy look - Copy (2).png"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+body{background:#fdfcfe;color:#333;}
+
+header{
+background:#4c1d95;
+color:white;
+padding:1rem 2rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.cart-icon{
+cursor:pointer;
+position:relative;
+font-size:22px;
+}
+
+.cart-count{
+position:absolute;
+top:-8px;
+right:-10px;
+background:#facc15;
+color:#4c1d95;
+font-size:12px;
+padding:2px 6px;
+border-radius:50%;
+font-weight:700;
+}
+
+.back-btn{
+background:#facc15;
+color:#4c1d95;
+padding:.5rem 1.2rem;
+border-radius:999px;
+font-weight:600;
+text-decoration:none;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:2rem;
+padding:2rem;
+}
+
+.card{
+background:white;
+border-radius:1rem;
+overflow:hidden;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card img{width:100%;height:250px;object-fit:cover;}
+
+.card-content{padding:1rem;}
+
+.card h3{color:#4c1d95;margin-bottom:.3rem;}
+.brand{font-size:.85rem;color:#666;margin-bottom:.5rem;}
+.price{font-weight:700;color:#3b82f6;margin-bottom:.3rem;}
+.stock{font-size:13px;color:#666;margin-bottom:.8rem;}
+.stock.out{
+color:red;
+font-weight:700;
+animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+}
+
+.card button{
+width:100%;
+padding:.6rem;
+border:none;
+border-radius:999px;
+background:#8b5cf6;
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+.card button:disabled{
+background:#aaa;
+cursor:not-allowed;
+}
+
+.cart{
+position:fixed;
+top:0;
+right:-400px;
+width:380px;
+height:100%;
+background:white;
+box-shadow:-5px 0 15px rgba(0,0,0,0.2);
+padding:1rem;
+transition:.4s;
+overflow-y:auto;
+z-index:1000;
+transform: translateX(100%);
+}
+
+.cart.active{
+right:0;
+transform: translateX(0);
+animation:slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn{
+from {transform: translateX(100%);}
+to {transform: translateX(0);}
+}
+
+.cart h2{color:#4c1d95;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;}
+
+.cart-item{
+border-bottom:1px solid #eee;
+padding:.5rem 0;
+}
+
+.cart-item-top{
+display:flex;
+justify-content:space-between;
+}
+
+.qty-controls{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:5px;
+}
+
+.qty-controls button{
+padding:3px 8px;
+border:none;
+background:#8b5cf6;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.remove-btn{
+color:red;
+cursor:pointer;
+font-size:12px;
+margin-top:5px;
+}
+
+.total{
+margin-top:1rem;
+font-weight:700;
+color:#4c1d95;
+}
+
+.checkout{
+margin-top:1rem;
+background:#4c1d95;
+color:white;
+padding:.7rem;
+border:none;
+border-radius:999px;
+width:100%;
+cursor:pointer;
+}
+
+.checkout.disabled{
+background:#aaa;
+cursor:not-allowed;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.5);
+display:none;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(6px);
+z-index:2000;
+}
+
+.modal-content{
+background:white;
+padding:2rem;
+width:350px;
+border-radius:1rem;
+animation:fadeInUp .4s ease;
+position:relative;
+text-align:center;
+}
+
+.modal-content h2{color:#4c1d95;margin-bottom:1rem;}
+
+.modal-content label{
+display:block;
+text-align:left;
+margin-top:0.8rem;
+font-weight:600;
+}
+
+.modal-content select{
+width:100%;
+padding:0.6rem;
+border-radius:0.5rem;
+border:1px solid #ccc;
+margin-top:0.3rem;
+}
+
+.modal-content button{
+width:100%;
+padding:.7rem;
+margin-top:1rem;
+border:none;
+border-radius:999px;
+background:#4c1d95;
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+.close{
+position:absolute;
+top:10px;
+right:15px;
+cursor:pointer;
+font-size:18px;
+}
+
+@keyframes fadeInUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="index.html" class="back-btn">← Back</a>
+<h1>Beauty Kits & Extensions</h1>
+<div class="cart-icon" onclick="toggleCart()">
+🛒
+<span class="cart-count" id="cartCount">0</span>
+</div>
+</header>
+
+<div class="products" id="products"></div>
+
+<div class="cart" id="cart">
+<h2>
+<span>Your Cart</span>
+<span style="cursor:pointer;font-size:20px;" onclick="toggleCart()">×</span>
+</h2>
+<div id="cartItems"></div>
+<div class="total">
+Items Total: GHS <span id="itemsTotal">0</span><br>
+Delivery: GHS <span id="deliveryFee">0</span><br>
+Grand Total: GHS <span id="grandTotal">0</span>
+</div>
+<button class="checkout" id="checkoutBtn" onclick="goToCheckout()">Proceed to Checkout</button>
+</div>
+
+<div class="modal" id="optionModal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">&times;</span>
+<h2>Select Options</h2>
+
+<label>Color</label>
+<select id="colorSelect"></select>
+
+<label>Size</label>
+<select id="sizeSelect"></select>
+
+<button onclick="confirmOptions()">Add to Cart</button>
+</div>
+</div>
+
+<script>
+const DELIVERY_FEE = 60;
+
+if(!localStorage.getItem("beautyStock")){
+  const initialStock = [
+    {brand:"Makeup Kit A", price:250, img:"beautykit1.jpg", stock:10},
+    {brand:"Makeup Kit B", price:300, img:"beautykit2.jpg", stock:8},
+    {brand:"Hair Extensions C", price:400, img:"extensions1.jpg", stock:5},
+    {brand:"Hair Extensions D", price:450, img:"extensions2.jpg", stock:6},
+    {brand:"Makeup Kit E", price:280, img:"beautykit3.jpg", stock:12},
+    {brand:"Hair Extensions F", price:350, img:"extensions3.jpg", stock:7}
+  ];
+  localStorage.setItem("beautyStock", JSON.stringify(initialStock));
+}
+
+let products = JSON.parse(localStorage.getItem("beautyStock"));
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let selectedIndex = null;
+const colors=["Red","Blue","Green","Black","White"];
+const sizes=["S","M","L","XL","2XL"];
+const productsContainer=document.getElementById("products");
+const checkoutBtn = document.getElementById("checkoutBtn");
+
+function renderProducts(){
+  productsContainer.innerHTML="";
+  products.forEach((item,index)=>{
+    let stockClass = item.stock>0?"stock":"stock out";
+    productsContainer.innerHTML+=`
+      <div class="card">
+        <img src="${item.img}">
+        <div class="card-content">
+          <h3>Beauty Product</h3>
+          <p class="brand">${item.brand}</p>
+          <p class="price">GHS ${item.price}</p>
+          <p class="${stockClass}" id="stock-${index}">${item.stock>0?"Available: "+item.stock:"Out of Stock"}</p>
+          <button onclick="openOptionModal(${index})" ${item.stock<=0?"disabled":""}>Add to Cart</button>
+        </div>
+      </div>`;
+  });
+}
+renderProducts();
+
+function openOptionModal(index){
+  if(products[index].stock<=0){alert("Out of stock"); return;}
+  selectedIndex=index;
+  document.getElementById("colorSelect").innerHTML=colors.map(c=>`<option>${c}</option>`).join("");
+  document.getElementById("sizeSelect").innerHTML=sizes.map(s=>`<option>${s}</option>`).join("");
+  document.getElementById("optionModal").style.display="flex";
+}
+
+function closeModal(){document.getElementById("optionModal").style.display="none";}
+
+function confirmOptions(){
+  const color=document.getElementById("colorSelect").value;
+  const size=document.getElementById("sizeSelect").value;
+  let product=products[selectedIndex];
+  if(product.stock<=0){alert("Out of stock"); return;}
+  
+  product.stock--;
+  localStorage.setItem("beautyStock", JSON.stringify(products));
+  updateStockDisplay(selectedIndex);
+
+  let item={...product, qty:1, color, size};
+  let found=cart.find(i=>i.brand===item.brand && i.color===color && i.size===size);
+  if(found){found.qty++;} else {cart.push(item);}
+  saveCart();
+  updateCart();
+  closeModal();
+}
+
+function updateStockDisplay(index){
+  let p = document.getElementById("stock-"+index);
+  let product = products[index];
+  p.innerText = product.stock>0?"Available: "+product.stock:"Out of Stock";
+  if(product.stock<=0){p.classList.add("out");}else{p.classList.remove("out");}
+}
+
+function updateCart(){
+  let total=0;
+  const cartItems=document.getElementById("cartItems");
+  cartItems.innerHTML="";
+  cart.forEach((item,i)=>{
+    total+=item.price*item.qty;
+    cartItems.innerHTML+=`
+      <div class="cart-item">
+        <div class="cart-item-top">
+          <strong>${item.brand}</strong> (${item.color}, ${item.size})
+          <span>GHS ${item.price*item.qty}</span>
+        </div>
+        <div class="qty-controls">
+          <button onclick="decreaseQty(${i})">-</button>
+          <span>${item.qty}</span>
+          <button onclick="increaseQty(${i})">+</button>
+        </div>
+        <div class="remove-btn" onclick="removeItem(${i})">Remove</div>
+      </div>`;
+  });
+  document.getElementById("itemsTotal").innerText=total;
+  document.getElementById("deliveryFee").innerText=cart.length>0?DELIVERY_FEE:0;
+  document.getElementById("grandTotal").innerText=cart.length>0?total+DELIVERY_FEE:0;
+  document.getElementById("cartCount").innerText=cart.reduce((a,b)=>a+b.qty,0);
+  
+  if(cart.length === 0){
+    checkoutBtn.classList.add("disabled");
+  } else {
+    checkoutBtn.classList.remove("disabled");
+  }
+}
+
+function increaseQty(i){cart[i].qty++; saveCart(); updateCart();}
+function decreaseQty(i){ 
+  if(cart[i].qty>1){cart[i].qty--;} 
+  else{ removeItem(i); return;} 
+  saveCart(); updateCart();
+}
+function removeItem(i){
+  let item=cart[i];
+  let index = products.findIndex(d=>d.brand===item.brand);
+  if(index>=0){ 
+    products[index].stock += item.qty;
+    localStorage.setItem("beautyStock", JSON.stringify(products));
+    updateStockDisplay(index);
+  }
+  cart.splice(i,1);
+  saveCart();
+  updateCart();
+}
+
+function saveCart(){localStorage.setItem("cart",JSON.stringify(cart));}
+function toggleCart(){document.getElementById("cart").classList.toggle("active");}
+function goToCheckout(){
+  if(cart.length === 0){
+    alert("Add an item to the cart before you can proceed to checkout");
+    return;
+  }
+  window.location.href="checkout.html";
+}
+
+renderProducts();
+updateCart();
+</script>
+
+</body>
+</html>

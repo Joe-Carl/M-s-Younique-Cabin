@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login | M's Younique Cabin</title>
+<link rel="icon" type="image/x-icon" href="m's logo  copy look - Copy (2).png"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+body{
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f3f0ff;
+}
+.box{
+background:white;
+padding:2rem;
+border-radius:12px;
+width:300px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+input{
+width:100%;
+padding:.7rem;
+margin:.5rem 0;
+}
+button{
+width:100%;
+padding:.7rem;
+background:#4c1d95;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Login</h2>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<script>
+function login(){
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+
+if(email && password){
+localStorage.setItem("loggedIn", "true");
+localStorage.setItem("userEmail", email);
+alert("Login Successful");
+window.location.href="checkout.html";
+}else{
+alert("Enter login details");
+}
+}
+</script>
+
+</body>
+</html>
